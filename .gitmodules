@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/V1SHAL421/SpringbootWeb.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/V1SHAL421/loanFrontend.git
