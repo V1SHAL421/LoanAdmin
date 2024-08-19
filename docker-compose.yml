@@ -1,15 +1,18 @@
 services:
-  loanfrontend:
+  frontend:
     build: ./frontend
     volumes:
       - ./frontend:/app
     ports:
       - "4200:80"
     depends_on:
-      - loan_app_backend
+      - backend
     environment:
-      - API_URL=http://loan_app_backend:8080
-  loan_app_backend:
+      - API_URL=http://backend:8080
+    networks:
+      - loanadmin_frontendBackend
+
+  backend:
     build: ./backend
     volumes:
       - ./backend/src:/app/src
@@ -17,3 +20,9 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
     ports:
       - "8080:8080"
+    networks:
+      - loanadmin_frontendBackend
+
+networks:
+  loanadmin_frontendBackend:
+    driver: bridge
